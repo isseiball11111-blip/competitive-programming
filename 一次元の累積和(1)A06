@@ -1,3 +1,6 @@
+//0日目を考慮した書き方とした
+//日付と配列を一致させるために(N+1)となっている
+
 #include<bits/stdc++.h>
 #include<vector>
 using namespace std;
