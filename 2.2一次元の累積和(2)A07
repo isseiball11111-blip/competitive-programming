@@ -1,0 +1,24 @@
+//N日目と配列を一致させるために(N+1)という書き方になっている
+//Bが(D+2)となっているのは0から始まり、B[R[i]+1]-=1;(Bの配列が1つ多くなっている)が含まれるためである
+#include<bits/stdc++.h>
+#include<vector>
+using namespace std;
+#define rep(i,n)for(int i=0;i<(n);++i)
+
+int main(){
+    int D,N;
+    cin>>D>>N;
+    vector<int>R(N+1);
+    vector<int>L(N+1);
+    for(int i=1;i<=N;i++)cin>>L[i]>>R[i];
+
+    vector<int>B(D+2,0);
+    for(int i=1;i<=N;i++){
+        B[L[i]]+=1;
+        B[R[i]+1]-=1;
+    }
+    
+    vector<int>ans(D+1,0);
+    for(int d=1;d<=D;d++)ans[d]=ans[d-1]+B[d];
+    for(int d=1;d<=D;d++)cout<<ans[d]<<endl;
+}
