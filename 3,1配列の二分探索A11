@@ -1,0 +1,27 @@
+//R=M-1;L=M+1;をしている理由は無限ループにさせないため（A[0],A[1]の配列が考えられる）あと、intは切り捨てられるので整数である場合参照しなくてよいところまで見ることになる
+//ans+1をしている理由は何番目と聞かれているからである。０番目を考慮していない答えのため（一般的にも1番目から始まる）+1をしている
+
+#include<bits/stdc++.h>
+#include<vector>
+using namespace std;
+#define rep(i,n)for(int i=0;i<(n);++i)
+
+int search(const vector<int>&A,int x){
+    int L=0,R=A.size()-1;
+    while(L<=R){
+        int M=(L+R)/2;
+        if(x<A[M])R=M-1;
+        if(x==A[M])return M;
+        if(x>A[M])L=M+1;
+    }
+    return -1;
+}
+int main(){
+    int N,X;
+    cin>>N>>X;
+    vector<int>A(N);
+    for(int i=0;i<N;i++)cin>>A[i];
+
+    int ans=search(A,X);
+    cout<<ans+1<<endl;
+}
